@@ -28,22 +28,25 @@ describe Oystercard do
 
   describe "Oystercard functions" do
     it "Oystercard can touch in and be in journey" do
+      subject.top_up(1)
       subject.touch_in
       expect(subject.in_journey?).to be true
     end
 
     it "Raises an error if already touched in" do
+      subject.top_up(1)
       subject.touch_in
       subject.in_journey?
       expect{ subject.touch_in }.to raise_error("In journey, can't touch in again")
     end
 
     it " raises an error if minimum balance is less than £1" do
-      subject.balance < 1
+      subject.top_up(0.5)
       expect{ subject.touch_in }.to raise_error("insufficient balance")
     end
 
     it "Oystercard can touch out and not be in journey" do
+      subject.top_up(1)
       subject.touch_in
       # subject.in_journey?
       subject.touch_out
@@ -51,6 +54,7 @@ describe Oystercard do
     end
 
     it "Raises and error if already touched out" do
+      subject.top_up(1)
       subject.touch_in
       # subject.in_journey?
       subject.touch_out
