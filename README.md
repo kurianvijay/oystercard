@@ -132,3 +132,188 @@ NoMethodError (undefined method `deduct' for #<Oystercard:0x00007f9ed9109558 @ba
 2.6.0 :006 > quit
 
 GREEN -
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fd5c79824f8 @balance=0, @max_bal=90>
+2.6.0 :003 > oyster.balance
+ => 0
+2.6.0 :004 > oyster.deduct
+Traceback (most recent call last):
+        5: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):4
+        1: from /Users/vijaykurian/Projects/OysterCard_Lucy/lib/Oystercard.rb:21:in `deduct'
+ArgumentError (wrong number of arguments (given 0, expected 1))
+2.6.0 :005 > oyster.deduct(1)
+ => -1
+2.6.0 :006 > oyster.top_up(5)
+ => 4
+2.6.0 :007 > oyster.deduct(2)
+ => 2
+2.6.0 :008 > quit
+
+GREEN - Error message method
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007f82da9a6c30 @balance=0, @max_bal=90>
+2.6.0 :003 > oyster.deduct(5)
+Traceback (most recent call last):
+        5: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):3
+        1: from /Users/vijaykurian/Projects/OysterCard_Lucy/lib/Oystercard.rb:22:in `deduct'
+RuntimeError (please top up, minimum balance reached)
+2.6.0 :004 > quit
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$
+
+5 -
+In order to get through the barriers.
+As a customer
+I need to touch in and out.
+
+Object | Message
+Card   | touch_in
+Card   | touch_out
+Card   | in_journey?
+                              Feature Test:
+RED -
+                              TOUCH_IN -
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > require './lib/station'
+ => true
+2.6.0 :003 > station = Station.new
+ => #<Station:0x00007fc8ad17d928>
+2.6.0 :004 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fc8ad08ea30 @balance=0, @max_bal=90>
+2.6.0 :005 > oyster.touch_in
+Traceback (most recent call last):
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):5
+NoMethodError (undefined method `touch_in' for #<Oystercard:0x00007fc8ad08ea30 @balance=0, @max_bal=90>)
+2.6.0 :006 > quit
+
+                              TOUCH_OUT
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007ff8f29724d8 @balance=0, @max_bal=90>
+2.6.0 :003 > oyster.touch_in
+ => true
+2.6.0 :004 > quit
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007f90c603e6d0 @balance=0, @max_bal=90>
+2.6.0 :003 > oyster.touch_out
+Traceback (most recent call last):
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):3
+NoMethodError (undefined method `touch_out' for #<Oystercard:0x00007f90c603e6d0 @balance=0, @max_bal=90>)
+Did you mean?  touch_in
+2.6.0 :004 > quit
+
+                              IN_JOURNEY?
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fc47e1e5fb0 @balance=0, @max_bal=90>
+2.6.0 :003 > oyster.touch_out
+ => true
+2.6.0 :004 > quit
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fae2502a758 @balance=0, @max_bal=90>
+2.6.0 :003 > oyster.in_journey?
+Traceback (most recent call last):
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):3
+NoMethodError (undefined method `in_journey?' for #<Oystercard:0x00007fae2502a758 @balance=0, @max_bal=90>)
+2.6.0 :004 > quit
+
+GREEN -
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fee3c13a538 @balance=0, @max_bal=90, @in_journey=false>
+2.6.0 :003 > oyster.touch_in
+ => true
+2.6.0 :004 > oyster.touch_in
+ => true
+2.6.0 :005 > oyster.in_journey?
+ => false
+2.6.0 :006 > quit
+
+GREEN -                     NO DOUBLE TOUCH IN OR TOUCH OUT
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fe5088fe1d0 @balance=0, @max_bal=90, @in_journey=false>
+2.6.0 :003 > oyster.touch_in
+ => true
+2.6.0 :004 > oyster.in_journey?
+ => true
+2.6.0 :005 > oyster.touch_in
+Traceback (most recent call last):
+        5: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):5
+        1: from /Users/vijaykurian/Projects/OysterCard_Lucy/lib/Oystercard.rb:31:in `touch_in'
+RuntimeError (In journey, can't touch in again)
+2.6.0 :006 > oyster.touch_out
+ => true
+2.6.0 :007 > oyster.in_journey?
+ => true
+2.6.0 :008 > quit
+
+
+
+6 -
+In order to pay for my journey
+As a customer
+I need to have the minimum amount (£1) for a single journey.
+
+Object | Message
+card   | Minimum Balance --> £1 ==> modify touch_in to raise error
+
+                              Feature Test:
+RED -
+???????????
+
+GREEN -
+
+Vijays-MacBook-Pro:OysterCard_Lucy vijaykurian$ irb
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007f8a529723c0 @balance=0, @max_bal=90, @in_journey=false>
+2.6.0 :003 > oyster.touch_in
+Traceback (most recent call last):
+        5: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):3
+        1: from /Users/vijaykurian/Projects/OysterCard_Lucy/lib/Oystercard.rb:33:in `touch_in'
+RuntimeError (insufficient balance)
+2.6.0 :004 > quit
