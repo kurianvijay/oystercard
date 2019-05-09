@@ -22,9 +22,9 @@ describe Oystercard do
      expect(subject.balance).to eq(5)
    end
 
-   it "raise an error if balance is less than default balance" do
-     expect { subject.deduct(5) }.to raise_error("please top up, minimum balance reached")
-   end
+   # it "raise an error if balance is less than default balance" do
+   #   expect { subject.deduct(5) }.to raise_error("please top up, minimum balance reached")
+   # end
 
   describe "Oystercard functions" do
     it "Oystercard can touch in and be in journey" do
@@ -43,6 +43,13 @@ describe Oystercard do
     it " raises an error if minimum balance is less than £1" do
       subject.top_up(0.5)
       expect{ subject.touch_in }.to raise_error("insufficient balance")
+    end
+
+    it "charges minimum fare for each completed journey" do
+      subject.top_up(10)
+      subject.touch_in
+      # expect(subject.touch_out).to respond_to(:deduct)
+      expect{subject.touch_out}.to change{subject.balance}.by(-Oystercard::MIN_FARE)
     end
 
     it "Oystercard can touch out and not be in journey" do

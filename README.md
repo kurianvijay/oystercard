@@ -317,3 +317,59 @@ Traceback (most recent call last):
         1: from /Users/vijaykurian/Projects/OysterCard_Lucy/lib/Oystercard.rb:33:in `touch_in'
 RuntimeError (insufficient balance)
 2.6.0 :004 > quit
+
+7 - In order to pay for my journey
+As a customer
+When my journey is complete, I need the
+correct amount deducted from my card
+
+Object | Message
+card   | Minimum Fare --> £2 ==> modify touch_out to call
+                                 deduct method to charge £2
+                                 for each completed journey.
+                        Feature Test:
+RED -
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007f8c501add10 @balance=0, @max_bal=90, @in_journey=false>
+2.6.0 :003 > oyster.top_up(10)
+ => 10
+2.6.0 :004 > osyter.balance
+Traceback (most recent call last):
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        2: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        1: from (irb):4
+NameError (undefined local variable or method `osyter' for main:Object)
+Did you mean?  oyster
+2.6.0 :005 > oyster.balance
+ => 10
+2.6.0 :006 > oyster.touch_in
+ => true
+2.6.0 :007 > oyster.touch_out
+ => false
+2.6.0 :008 > oyster.balance
+ => 10
+2.6.0 :009 > quit
+
+GREEN -
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007febc08f2100 @balance=0, @max_bal=90, @in_journey=false, @min_balance=1, @min_fare=2>
+2.6.0 :003 > oyster.balance
+ => 0
+ 2.6.0 :005 > oyster.top_up(10)
+  => 10
+ 2.6.0 :006 > oyster.balance
+  => 10
+ 2.6.0 :007 > oyster.touch_in
+  => true
+ 2.6.0 :008 > oyster.balance
+  => 10
+ 2.6.0 :009 > oyster.touch_out
+  => false
+ 2.6.0 :010 > oyster.balance
+  => 8
+ 2.6.0 :011 > quit
