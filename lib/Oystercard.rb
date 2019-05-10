@@ -19,6 +19,8 @@ class Oystercard
     @min_fare = MIN_FARE
     @entry_station = nil
     @exit_station = nil
+    @journeys = []
+    @one_journey = Hash.new
   end
 
   def top_up(amount)
@@ -54,6 +56,12 @@ class Oystercard
   def in_journey?
     @entry_station != nil
     # !!entry_station #==> alternative to above line
+  end
+
+  def journeys
+    #return @journeys << {@entry_station => @exit_station}
+    @one_journey = {@entry_station => @exit_station}
+    return @journeys << @one_journey
   end
 
   # private

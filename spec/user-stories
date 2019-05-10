@@ -411,3 +411,26 @@ RuntimeError (In journey, can't touch in again)
 2.6.0 :007 > oyster.balance
  => 8
 2.6.0 :008 > quit
+
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007fc15b102650 @balance=0, @max_bal=90, @in_journey=false, @min_balance=1, @min_fare=2, @entry_station=nil, @exit_station=nil, @journeys=[], @one_journey={}>
+2.6.0 :003 > oyster.top_up(10)
+ => 10
+2.6.0 :004 > oyster.touch_in("bank")
+ => "bank"
+2.6.0 :005 > oyster.touch_out("hainult")
+ => "hainult"
+2.6.0 :006 > oyster.journeys
+ => [{"bank"=>"hainult"}]
+
+
+10 - In order to know how far I have travelled
+As a customer
+I want to know what zone a station is in
+
+Object | Message
+station|  
+                        Feature Test: irb
+RED -

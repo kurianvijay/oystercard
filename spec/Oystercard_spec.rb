@@ -29,6 +29,11 @@ describe Oystercard do
    # end
 
   describe "card functions" do
+    #let(:station){ double :station }
+    it "stores all entry and exit stations as a set" do
+      expect(subject.journeys).to eq([{@entry_station => @exit_station}])
+    end
+
     it "Oystercard can touch in and be in journey" do
       subject.top_up(1)
       subject.touch_in
@@ -37,7 +42,8 @@ describe Oystercard do
 
     let(:station){ double :station} #=> creation of a double for testing
     # of entry_station = station
-    it "will let #touch_in record entry station" do
+
+    it "while touching out records entry station" do
       subject.top_up(5)
       subject.touch_in(station)
       expect(subject.entry_station).to eq station
@@ -90,8 +96,6 @@ describe Oystercard do
     it "Oystercard can be in_journey?" do
       expect(subject.in_journey?).to be false
     end
-
-
   end
 
  end
