@@ -1,7 +1,8 @@
 require 'Oystercard'
+
 describe Oystercard do
 
- describe "balance" do
+ describe "card balance" do
    it "Has a default balance of 0" do
      expect(subject.balance).to eq(0)
    end
@@ -22,15 +23,24 @@ describe Oystercard do
      expect(subject.balance).to eq(5)
    end
 
+#==> test below was not required, was an additional feature but failed on sunsequent tests
    # it "raise an error if balance is less than default balance" do
    #   expect { subject.deduct(5) }.to raise_error("please top up, minimum balance reached")
    # end
 
-  describe "Oystercard functions" do
+  describe "card functions" do
     it "Oystercard can touch in and be in journey" do
       subject.top_up(1)
       subject.touch_in
       expect(subject.in_journey?).to be true
+    end
+
+    let(:station){ double :station} #=> creation of a double for testing
+    # of entry_station = station
+    it "will let #touch_in record entry station" do
+      subject.top_up(5)
+      subject.touch_in(station)
+      expect(subject.entry_station).to eq station
     end
 
     it "Raises an error if already touched in" do
@@ -58,6 +68,15 @@ describe Oystercard do
       # subject.in_journey?
       subject.touch_out
       expect(subject.in_journey).to be false
+    end
+
+    let(:exit_station){ double :exit_station } #=> creation of a double for testing
+    # of exit_station
+    it "while touching out records exit station" do
+      subject.top_up(10)
+      subject.touch_in (station)
+      subject.touch_out (exit_station)
+      expect(subject.exit_station).to eq exit_station
     end
 
     it "Raises and error if already touched out" do
