@@ -379,4 +379,35 @@ As a customer
 I need to know where I've travelled from
 
 Object | Message
-card   | Store station name --> incorporate into touch_in
+card   | Store entry_station name --> incorporate into touch_in
+
+9 - In order to know where I have been
+As a customer
+I want to see all my previous trips
+
+Object | Message
+card   | Store exit_station name --> incorporate into touch_out
+card   | Store a history of my journeys --> Hashes in an array
+                    Feature Tests:(Entry and Exit Stations ONLY)
+GREEN -
+2.6.0 :001 > require './lib/Oystercard'
+ => true
+2.6.0 :002 > oyster = Oystercard.new
+ => #<Oystercard:0x00007f7fbb82d510 @balance=0, @max_bal=90, @in_journey=false, @min_balance=1, @min_fare=2, @entry_station=nil, @exit_station=nil>
+2.6.0 :003 > oyster.top_up(10)
+ => 10
+2.6.0 :004 > oyster.touch_in
+ => ""
+2.6.0 :005 > oyster.touch_in('bank')
+Traceback (most recent call last):
+        5: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `<main>'
+        4: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/bin/irb:23:in `load'
+        3: from /Users/vijaykurian/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/irb-1.0.0/exe/irb:11:in `<top (required)>'
+        2: from (irb):5
+        1: from /Users/vijaykurian/Projects/OysterCard_Lucy/lib/Oystercard.rb:37:in `touch_in'
+RuntimeError (In journey, can't touch in again)
+2.6.0 :006 > oyster.touch_out('bank')
+ => "bank"
+2.6.0 :007 > oyster.balance
+ => 8
+2.6.0 :008 > quit
