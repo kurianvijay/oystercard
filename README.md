@@ -411,3 +411,9 @@ GREEN -
  2.6.0 :007 > oyster.balance
   => 8
  2.6.0 :008 > quit
+``
+
+
+ Object | message
+ -|-
+ card | deduct penalty
